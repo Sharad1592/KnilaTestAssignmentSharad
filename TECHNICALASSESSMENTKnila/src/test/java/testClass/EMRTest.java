@@ -23,7 +23,7 @@ public class EMRTest extends BaseTest{
 	
 	@Test(priority=5)
 	public void addPatientDemographic() {
-		emrPage.addPatientDetails("SSh","Sa");
+		emrPage.addPatientDetails("Sharad","Sahu");
 		emrPage.selectGender();
 		emrPage.addDOB("15","August","1992");
 		emrPage.addAddress();

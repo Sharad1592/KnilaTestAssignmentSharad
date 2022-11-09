@@ -188,7 +188,7 @@ public class EMRPage extends BaseClass {
 	}
 	
 	public void addMobileNumber() {
-		mobileNo.sendKeys("1234567890");
+		mobileNo.sendKeys("9518331398");
 		nextBtn.click();
 		nextBtn.click();
 	}
@@ -227,7 +227,7 @@ public class EMRPage extends BaseClass {
 		js.executeScript("arguments[0].click",uploadFile);
 		Robot rb = new Robot();
 		rb.delay(2000);
-		StringSelection ss = new StringSelection("C:\\\\Users\\\\shara\\\\Downloads\\\\uploadfiless.pdf");
+		StringSelection ss = new StringSelection("C:\\Users\\shara\\Downloads\\uploadfiless.pdf");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 		rb.delay(2000);
 		rb.keyPress(KeyEvent.VK_CONTROL);
@@ -240,7 +240,7 @@ public class EMRPage extends BaseClass {
 	}
 	
 	public void enterCaptionAndClickUploadFile() throws InterruptedException {
-		textArea.sendKeys("Test");
+		textArea.sendKeys("TestFile");
 		Thread.sleep(2000);
 		btnUploadFile.click();
 	}
