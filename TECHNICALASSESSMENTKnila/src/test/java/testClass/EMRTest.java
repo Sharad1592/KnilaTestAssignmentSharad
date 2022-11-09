@@ -1,5 +1,8 @@
 package testClass;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import java.awt.AWTException;
 
 import org.jsoup.select.Evaluator.ContainsText;
@@ -18,7 +21,7 @@ public class EMRTest extends BaseTest{
 		
 	@Test(priority=4)
 	public void verifyTitleOfEMRPage() {
-		Assert.assertEquals(emrPage.getTitleOfEMRPage(), "OpenMRS Electronic Medical Record");
+		AssertJUnit.assertEquals(emrPage.getTitleOfEMRPage(), "OpenMRS Electronic Medical Record");
 	}
 	
 	@Test(priority=5)
@@ -42,7 +45,7 @@ public class EMRTest extends BaseTest{
 	
 	@Test(priority=8)
 	public void verifyDOBisCorrectOrNot() {
-		Assert.assertEquals(emrPage.checkAge(), "30 year(s) ( 15.Aug.1992)");
+		AssertJUnit.assertEquals(emrPage.checkAge(), "30 year(s) ( 15.Aug.1992)");
 	}
 	@Test(priority=9)
 	public void clickOnStartVisit() throws AWTException, InterruptedException {
