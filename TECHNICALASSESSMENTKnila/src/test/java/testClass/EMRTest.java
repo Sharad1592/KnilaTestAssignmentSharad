@@ -23,7 +23,7 @@ public class EMRTest extends BaseTest{
 	
 	@Test(priority=5)
 	public void addPatientDemographic() {
-		emrPage.addPatientDetails("Sharad","Sahu");
+		emrPage.addPatientDetails("SSh","Sa");
 		emrPage.selectGender();
 		emrPage.addDOB("15","August","1992");
 		emrPage.addAddress();
@@ -45,11 +45,38 @@ public class EMRTest extends BaseTest{
 		Assert.assertEquals(emrPage.checkAge(), "30 year(s) ( 15.Aug.1992)");
 	}
 	@Test(priority=9)
-	public void clickOnStartVisit() throws AWTException {
+	public void clickOnStartVisit() throws AWTException, InterruptedException {
 		emrPage.selectStartVisit();
 		emrPage.clickAttachment();
+		emrPage.enterCaptionAndClickUploadFile();
+		emrPage.clickObBreadCrum();
 	}
 	
+	@Test(priority=10)
+	public void goToVerifyVital() throws InterruptedException {
+		emrPage.endVisitClick();
+		Thread.sleep(2000);
+		emrPage.selectStartVisit();
+	}
+	
+	@Test(priority=11)
+	public void collectVital() throws InterruptedException {
+		emrPage.captureVital();
+	}
+	
+	@Test(priority=12)
+	public void mergeVital() throws InterruptedException {
+		emrPage.mergeVisit();
+		emrPage.clickAllCheckBox();
+		emrPage.clickOnMergeBtn();
+	}
+	
+	@Test(priority=13)
+	public void checkCalenderandDeleteRecord() {
+		emrPage.handleCalenderPastVisit();
+		emrPage.deletePatientRecord();
+	
+	}
 	
 }
 

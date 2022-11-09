@@ -6,9 +6,9 @@
       <class name="testClass.EMRTest">
         <methods>
           <include name="launchBrowser"/>
+          <include name="mergeVital"/>
           <include name="pageObject"/>
           <include name="loginPageAndSelectCategory"/>
-          <include name="clickOnStartVisit"/>
         </methods>
       </class> <!-- testClass.EMRTest -->
     </classes>

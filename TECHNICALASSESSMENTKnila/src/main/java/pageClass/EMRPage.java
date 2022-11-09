@@ -77,6 +77,83 @@ public class EMRPage extends BaseClass {
 	@FindBy(xpath="//*[@id='visit-documents-dropzone']")
 	private WebElement uploadFile;
 	
+	@FindBy(xpath="//*[@placeholder='Enter a caption']")
+	private WebElement textArea;
+	
+	@FindBy(xpath="//button[@class='confirm ng-binding']")
+	private WebElement btnUploadFile;
+	
+	@FindBy(xpath="//i[@class='icon-chevron-right link']//parent::li//a")
+	private WebElement breadCrum;
+	
+	
+	@FindBy(xpath="/html/body/div[1]/div[3]/div[9]/div[3]/div/ul[1]/li[1]/a/div/div[2][1]")
+	private WebElement endVisit;
+	
+	@FindBy(xpath="//input[@id='visitId']//parent::div//button[@class='confirm right']")
+	private WebElement btnYes;
+	
+	@FindBy(xpath="//a[@id='referenceapplication.realTime.vitals']")
+	private WebElement captureVitalBtn;
+	
+	@FindBy(xpath="//input[@id='w8']")
+	private WebElement heightInput;
+	
+	@FindBy(xpath="//input[@id='w10']")
+	private WebElement weightInput;
+	
+	@FindBy(xpath="//a[@id='save-form']")
+	private WebElement saveForm;
+	
+	
+	@FindBy(xpath="//button[@type='submit']")
+	private WebElement saveBtn;
+	
+	@FindBy(xpath="//a[text()=' End Visit']")
+	private WebElement endBtn;
+	
+	@FindBy(xpath="//div[@id='end-visit-dialog']//button[@class='confirm right']")
+	private WebElement confirmYes;
+	
+	@FindBy(xpath="//div[@class='col-12 col-sm-auto']")
+	private WebElement nameBtn;
+	
+	@FindBy(xpath="/html/body/div[1]/div[3]/div[9]/div[2]/div/ul/li[3]/a/div/div[2][1]")
+	private WebElement mergeVisit;
+	
+	
+	@FindBy(xpath="//input[@class='selectVisit']")
+	private List<WebElement> checkBox;
+	
+	@FindBy(xpath="//input[@id='mergeVisitsBtn']")
+	private WebElement mergeBtn;
+	
+	@FindBy(xpath="//input[@class='cancel']")
+	private WebElement returnBtn;
+	
+	@FindBy(xpath="/html/body/div[1]/div[3]/div[9]/div[2]/div/ul/li[2]/a/div/div[2][1]")
+	private WebElement pastVisit;
+	
+	@FindBy(xpath="//label[@for='startDate']//parent::p//i")
+	private WebElement calenderIcon;
+	
+	@FindBy(xpath="/html/body/div[2]/div[3]/table/tbody/tr[3]/td[5]")
+	private WebElement dateCheck;
+	
+	@FindBy(xpath="/html/body/div[5]/div/div/div[2]/button[1][1]")
+	private WebElement cancleBtn;
+	
+	@FindBy(xpath="/html/body/div[1]/div[3]/div[9]/div[2]/div/ul/li[8]/a/div/div[2][1]")
+	private WebElement deletePatient;
+	
+	@FindBy(xpath="//input[@id='delete-reason']")
+	private WebElement addReason;
+	
+	@FindBy(xpath="//div[@id='delete-patient-creation-dialog']//button[@class='confirm right']")
+	private WebElement deleteConfirmBtn;
+	
+	
+	
 	public EMRPage(WebDriver driver) {
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
@@ -143,23 +220,87 @@ public class EMRPage extends BaseClass {
 		confirmBtn.click();
 	}
 	
+	
 	public void clickAttachment() throws AWTException {
 		attachmentBtn.click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click",uploadFile);
 		Robot rb = new Robot();
-		rb.delay(1000);
-		StringSelection ss = new StringSelection("C:\\Users\\shara\\OneDrive\\Desktop\\uploadfile.pdf");
+		rb.delay(2000);
+		StringSelection ss = new StringSelection("C:\\\\Users\\\\shara\\\\Downloads\\\\uploadfiless.pdf");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-		
+		rb.delay(2000);
 		rb.keyPress(KeyEvent.VK_CONTROL);
 		rb.keyPress(KeyEvent.VK_V);
 		rb.keyRelease(KeyEvent.VK_CONTROL);
 		rb.keyRelease(KeyEvent.VK_V);
+		rb.delay(2000);
 		rb.keyPress(KeyEvent.VK_ENTER);
 		rb.keyRelease(KeyEvent.VK_ENTER);
 	}
 	
+	public void enterCaptionAndClickUploadFile() throws InterruptedException {
+		textArea.sendKeys("Test");
+		Thread.sleep(2000);
+		btnUploadFile.click();
+	}
+	
+	public void clickObBreadCrum()  {
+		breadCrum.click();
+	}
+	
+	public void endVisitClick() {
+		endVisit.click();
+		btnYes.click();
+	}
+	
+	public void captureVital() throws InterruptedException {
+		captureVitalBtn.click();
+		heightInput.sendKeys("184");
+		nextBtn.click();
+		weightInput.sendKeys("84");
+		saveForm.click();
+		saveBtn.click();
+		endBtn.click();
+		confirmYes.click();
+		Thread.sleep(1000);
+		nameBtn.click();
+	}
+	
+	public void mergeVisit() {
+		mergeVisit.click();
+	}
+		
+	public void clickAllCheckBox() throws InterruptedException{
+		Thread.sleep(1000);
+		for(WebElement cb:checkBox) {
+			cb.click();
+		}
+		
+	}
+	
+	public void clickOnMergeBtn() throws InterruptedException {
+		Thread.sleep(1000);
+		mergeBtn.click();
+		Thread.sleep(2000);
+		returnBtn.click();
+	}
+	
+	public void handleCalenderPastVisit() {
+		pastVisit.click();
+		calenderIcon.click();
+		System.out.println(dateCheck.isDisplayed());
+		cancleBtn.click();
+	}
+	
+	public void deletePatientRecord() {
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		deletePatient.click();
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		addReason.sendKeys("This is Test");
+		deleteConfirmBtn.click();
+		
+	}
 	
 	public String getTitleOfEMRPage() {
 		return driver.getTitle();
